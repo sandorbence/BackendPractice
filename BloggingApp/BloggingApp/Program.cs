@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using BlogApp.DataAccess.Data;
 using BlogApp.DataAccess.Repository;
 using BlogApp.DataAccess.Repository.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 public class Program
 {
@@ -16,6 +17,10 @@ public class Program
 		builder.Services.AddDbContext<ApplicationDbContext>(options =>
 		options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+        builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+			.AddEntityFrameworkStores<ApplicationDbContext>()
+			.AddDefaultTokenProviders();
+		builder.Services.AddRazorPages();
 		builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 		var app = builder.Build();
@@ -33,8 +38,9 @@ public class Program
 
 		app.UseRouting();
 
+		app.UseAuthentication();
 		app.UseAuthorization();
-
+		app.MapRazorPages();
 		app.MapControllerRoute(
 			name: "default",
 			pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
-using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Identity;
 
 namespace BlogApp.Models
 {
 	public class ApplicationUser : IdentityUser
 	{
 		[Required]
-		string Name { get; set; }
+		public string Name { get; set; }
 	}
 }

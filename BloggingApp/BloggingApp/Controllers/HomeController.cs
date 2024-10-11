@@ -1,31 +1,36 @@
-using BloggingApp.Models;
-using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+
+using Microsoft.AspNetCore.Mvc;
+
+using BlogApp.DataAccess.Repository.Interfaces;
+using BloggingApp.Models;
+using BlogApp.Models;
 
 namespace BloggingApp.Controllers
 {
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
+		private readonly IUnitOfWork _unitOfWork;
 
-		public HomeController(ILogger<HomeController> logger)
+		public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
 		{
-			_logger = logger;
+			this._logger = logger;
+			this._unitOfWork = unitOfWork;
 		}
 
 		public IActionResult Index()
 		{
-			return View();
+			IEnumerable<Article> articles = this._unitOfWork.Article.GetAll();
+
+			return View(articles);
 		}
 
-		public IActionResult Privacy()
+		public IActionResult Article(int articleId)
 		{
-			return View();
-		}
+			Article article = this._unitOfWork.Article.Get(a => a.Id == articleId);
 
-		public IActionResult Article(int id)
-		{
-			return View();
+			return View(article);
 		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
