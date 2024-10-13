@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{01CE2CAF-9A25-4C60-B72C-7CCDD0F0D908}|BloggingApp\\BloggingApp.csproj|solutionrelative:bloggingapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D22C1FAB-CECB-4A65-A408-A425CACF9F7F}|BlogApp.DataAccess\\BlogApp.DataAccess.csproj|c:\\users\\szani\\source\\repos\\backendpractice\\bloggingapp\\blogapp.dataaccess\\dbinitializer\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D22C1FAB-CECB-4A65-A408-A425CACF9F7F}|BlogApp.DataAccess\\BlogApp.DataAccess.csproj|solutionrelative:blogapp.dataaccess\\dbinitializer\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{01CE2CAF-9A25-4C60-B72C-7CCDD0F0D908}|BloggingApp\\BloggingApp.csproj|c:\\users\\szani\\source\\repos\\backendpractice\\bloggingapp\\bloggingapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{01CE2CAF-9A25-4C60-B72C-7CCDD0F0D908}|BloggingApp\\BloggingApp.csproj|solutionrelative:bloggingapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
@@ -22,8 +26,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DbInitializer.cs",
+              "DocumentMoniker": "C:\\Users\\szani\\source\\repos\\BackendPractice\\BloggingApp\\BlogApp.DataAccess\\DbInitializer\\DbInitializer.cs",
+              "RelativeDocumentMoniker": "BlogApp.DataAccess\\DbInitializer\\DbInitializer.cs",
+              "ToolTip": "C:\\Users\\szani\\source\\repos\\BackendPractice\\BloggingApp\\BlogApp.DataAccess\\DbInitializer\\DbInitializer.cs",
+              "RelativeToolTip": "BlogApp.DataAccess\\DbInitializer\\DbInitializer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T16:09:36.578Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -32,27 +49,26 @@
               "RelativeDocumentMoniker": "BloggingApp\\Program.cs",
               "ToolTip": "C:\\Users\\szani\\source\\repos\\BackendPractice\\BloggingApp\\BloggingApp\\Program.cs",
               "RelativeToolTip": "BloggingApp\\Program.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABEAAABwAAAA",
+              "ViewState": "AQIAACcAAAAAAAAAAAAqwDMAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-13T15:13:51.656Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BlogApp.DataAccess",
+              "DocumentIndex": 3,
+              "Title": "BlogApp.DataAccess.csproj",
               "DocumentMoniker": "C:\\Users\\szani\\source\\repos\\BackendPractice\\BloggingApp\\BlogApp.DataAccess\\BlogApp.DataAccess.csproj",
               "RelativeDocumentMoniker": "BlogApp.DataAccess\\BlogApp.DataAccess.csproj",
               "ToolTip": "C:\\Users\\szani\\source\\repos\\BackendPractice\\BloggingApp\\BlogApp.DataAccess\\BlogApp.DataAccess.csproj",
               "RelativeToolTip": "BlogApp.DataAccess\\BlogApp.DataAccess.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-10-13T15:10:56.461Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-13T15:10:56.461Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\szani\\source\\repos\\BackendPractice\\BloggingApp\\BloggingApp\\appsettings.json",
               "RelativeDocumentMoniker": "BloggingApp\\appsettings.json",
@@ -60,8 +76,7 @@
               "RelativeToolTip": "BloggingApp\\appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAABCAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-10-13T15:07:42.669Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-13T15:07:42.669Z"
             }
           ]
         }

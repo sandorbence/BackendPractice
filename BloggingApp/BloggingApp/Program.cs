@@ -4,6 +4,7 @@ using BlogApp.DataAccess.Data;
 using BlogApp.DataAccess.Repository;
 using BlogApp.DataAccess.Repository.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using BlogApp.DataAccess.DbInitializer;
 
 public class Program
 {
@@ -45,11 +46,17 @@ public class Program
 
         app.UseAuthentication();
         app.UseAuthorization();
+
+        using IServiceScope scope = app.Services.CreateScope();
+        IDbInitializer dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.Initialize();
+
         app.MapRazorPages();
         app.MapControllerRoute(
             name: "default",
             pattern: "{controller=Home}/{action=Index}/{id?}");
 
         app.Run();
+
     }
 }
