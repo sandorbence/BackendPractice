@@ -29,6 +29,8 @@ public class Program
         builder.Services.AddRazorPages();
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+        builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
