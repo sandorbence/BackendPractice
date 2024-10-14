@@ -1,10 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 using BlogApp.DataAccess.Data;
 using BlogApp.DataAccess.Repository;
 using BlogApp.DataAccess.Repository.Interfaces;
-using Microsoft.AspNetCore.Identity;
 using BlogApp.DataAccess.DbInitializer;
+using BloggingApp.Utils;
 
 public class Program
 {
@@ -30,6 +32,7 @@ public class Program
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+        builder.Services.AddScoped<IEmailSender, EmailSender>();
 
         var app = builder.Build();
 

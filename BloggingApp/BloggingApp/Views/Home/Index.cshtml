@@ -1,5 +1,5 @@
 ﻿@using BlogApp.Models
-@model List<Article>
+@model IEnumerable<Article>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -11,7 +11,7 @@
         {
             <li>
                 <a asp-controller="Home" asp-action="Article" asp-route-articleId="@article.Id">@article.Title</a>
-                <div>By:&nbsp;</div>
+                <div>By:&nbsp;@article.ApplicationUser.Name</div>
             </li>
         }
     </ul>
