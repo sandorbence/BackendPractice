@@ -34,6 +34,24 @@ namespace BloggingApp.Controllers
             return View(article);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Article article)
+        {
+            if (ModelState.IsValid)
+            {
+                this._unitOfWork.Article.Add(article);
+                this._unitOfWork.Save();
+                return RedirectToAction("Index");
+            }
+
+            return View(article);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
