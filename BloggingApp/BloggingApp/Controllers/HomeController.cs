@@ -38,8 +38,8 @@ namespace BloggingApp.Controllers
         [Authorize]
         public IActionResult Create()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            ViewBag.UserId = userId;
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            this.ViewBag.UserId = userId;
 
             return View();
         }
@@ -55,6 +55,22 @@ namespace BloggingApp.Controllers
             }
 
             return View(article);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int? id)
+        {
+            Article? article = this._unitOfWork.Article.Get(a => a.Id == id);
+
+            if (article == null)
+            {
+                return NotFound();
+            }
+
+            this._unitOfWork.Article.Remove(article);
+            this._unitOfWork.Save();
+
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
