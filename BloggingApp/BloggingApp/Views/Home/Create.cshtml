@@ -2,6 +2,8 @@
 @model Article
 
 <form method="post">
-    <input asp-for="@Model.Title" />
-    <input asp-for="@Model.Text" />
+    <input asp-for="@Model.Title" type="text" class="form-control"/>
+    <input asp-for="@Model.Text" type="text" class="form-control" />
+    <input asp-for="@Model.ApplicationUserId" hidden value="@ViewBag.UserId" />
+    <input type="submit" value="Create Post">
 </form>

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using BlogApp.DataAccess.Repository.Interfaces;
 using BloggingApp.Models;
 using BlogApp.Models;
+using System.Security.Claims;
 
 namespace BloggingApp.Controllers
 {
@@ -34,8 +35,12 @@ namespace BloggingApp.Controllers
             return View(article);
         }
 
+        [Authorize]
         public IActionResult Create()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.UserId = userId;
+
             return View();
         }
 
