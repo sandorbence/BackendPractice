@@ -58,6 +58,7 @@ namespace BloggingApp.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Delete(int? id)
         {
             Article? article = this._unitOfWork.Article.Get(a => a.Id == id);
@@ -71,6 +72,32 @@ namespace BloggingApp.Controllers
             this._unitOfWork.Save();
 
             return RedirectToAction("Index");
+        }
+
+        [Authorize]
+        public IActionResult Edit(int? id)
+        {
+            Article? article = this._unitOfWork.Article.Get(a => a.Id == id);
+
+            if (article == null)
+            {
+                return NotFound();
+            }
+
+            return View(article);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Article article)
+        {
+            if (ModelState.IsValid)
+            {
+                this._unitOfWork.Article.Update(article);
+                this._unitOfWork.Save();
+                return RedirectToAction("Index");
+            }
+
+            return View(article);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

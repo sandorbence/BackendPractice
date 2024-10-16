@@ -15,7 +15,7 @@ namespace BlogApp.DataAccess.Repository
 
 		public void Update(Article article)
 		{
-			this._db.Articles.Add(article);
+			this._db.Articles.Update(article);
 		}
 	}
 }
