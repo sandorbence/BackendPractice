@@ -54,6 +54,7 @@ namespace BloggingApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                article.Date = DateTime.Now;
                 this._unitOfWork.Article.Add(article);
                 this._unitOfWork.Save();
                 return RedirectToAction("Index");

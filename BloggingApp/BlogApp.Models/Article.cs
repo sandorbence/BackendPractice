@@ -14,6 +14,7 @@ namespace BlogApp.Models
         [Required]
         [MaxLength(2000)]
         public string Text { get; set; }
+        public DateTime Date { get; set; }
         [Required]
         public string ApplicationUserId { get; set; }
         [ForeignKey(nameof(ApplicationUserId))]
