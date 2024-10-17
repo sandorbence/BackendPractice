@@ -7,6 +7,7 @@ using BlogApp.DataAccess.Repository.Interfaces;
 using BloggingApp.Models;
 using BlogApp.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 namespace BloggingApp.Controllers
 {
@@ -30,7 +31,11 @@ namespace BloggingApp.Controllers
 
         public IActionResult Article(int articleId)
         {
-            Article article = this._unitOfWork.Article.Get(a => a.Id == articleId);
+            Article article = this._unitOfWork.Article.Get(a => a.Id == articleId, includeProperties: "ApplicationUser");
+
+            string? currentUserName = this.User?.Identity?.Name;
+
+            this.ViewBag.UserIsAuthor = currentUserName == article.ApplicationUser.UserName;
 
             return View(article);
         }
@@ -77,8 +82,13 @@ namespace BloggingApp.Controllers
         [Authorize]
         public IActionResult Edit(int? id)
         {
-            Article? article = this._unitOfWork.Article.Get(a => a.Id == id);
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
 
+            Article? article = this._unitOfWork.Article.Get(a => a.Id == id);
+            
             if (article == null)
             {
                 return NotFound();
