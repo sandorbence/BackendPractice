@@ -89,7 +89,7 @@ namespace BloggingApp.Controllers
             }
 
             Article? article = this._unitOfWork.Article.Get(a => a.Id == id);
-            
+
             if (article == null)
             {
                 return NotFound();
@@ -116,5 +116,17 @@ namespace BloggingApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        #region API calls
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Article> articles = this._unitOfWork.Article.GetAll(includeProperties: "ApplicationUser").ToList();
+
+            return Json(articles);
+        }
+
+        #endregion
     }
 }

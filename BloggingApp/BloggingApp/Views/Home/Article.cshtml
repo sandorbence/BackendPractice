@@ -52,3 +52,20 @@
     </div>
 
 </main>
+
+<script>
+    fetch("/home/getall")
+        .then(response => response.json())
+        .then(x => display(x));
+
+    function display(data) {
+        let placeHolders = document.querySelector(".list-unstyled").querySelectorAll("li");
+
+        let first = placeHolders[0];
+        let options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+
+        first.querySelector("h6").innerText = data[0].title;
+        first.querySelector("small").innerText = data[0].date.toLocaleString("en-US", options);
+    }
+
+</script>
