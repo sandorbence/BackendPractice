@@ -7,7 +7,7 @@
 
 <div class="text-center">
     <ul>
-        @foreach (Article article in Model.OrderBy(a => a.Id))
+        @foreach (Article article in Model)
         {
             <li>
                 <a asp-controller="Home" asp-action="Article" asp-route-articleId="@article.Id">@article.Title</a>

@@ -24,7 +24,8 @@ namespace BloggingApp.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Article> articles = this._unitOfWork.Article.GetAll(includeProperties: "ApplicationUser");
+            IEnumerable<Article> articles = this._unitOfWork.Article.GetAll(includeProperties: "ApplicationUser")
+                .OrderByDescending(a => a.Date);
 
             return View(articles);
         }
@@ -54,7 +55,9 @@ namespace BloggingApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                article.Date = DateTime.Now;
+                DateTime date = DateTime.Now;
+                DateTime.SpecifyKind(date, DateTimeKind.Utc);
+                article.Date = date;
                 this._unitOfWork.Article.Add(article);
                 this._unitOfWork.Save();
                 return RedirectToAction("Index");
