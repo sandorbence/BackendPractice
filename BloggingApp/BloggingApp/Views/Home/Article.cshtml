@@ -11,6 +11,13 @@
 
                 <p>@Model.Text</p>
             </article>
+            @if (this.ViewBag.UserIsAuthor)
+            {
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+                <form method="post" asp-action="Delete" asp-route-id="@Model.Id">
+                    <input type="submit" class="btn btn-danger" value="Delete" />
+                </form>
+            }
         </div>
 
         <div class="col-md-4">
@@ -50,7 +57,6 @@
             </div>
         </div>
     </div>
-
 </main>
 
 <script src="~/js/article.js"></script>
