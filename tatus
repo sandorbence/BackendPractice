@@ -1,0 +1,29 @@
+[33m19ddc25[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Remove code repetition
+[33m796b2da[m Remove 0 from the recent article links
+[33m263f0cf[m[33m ([m[1;31morigin/main[m[33m)[m Make recent article links work
+[33m960b6de[m Add more styling
+[33mc8723ac[m Add back edit and delete buttons
+[33m4e254da[m Move js script to separate file
+[33m062eafa[m Sort articles by date
+[33m9f4789b[m Add one post to recent posts
+[33m3af549d[m Format date at article
+[33me279a0e[m Add date field to article
+[33mec9d5ea[m Add bootstrap styling to Article page
+[33m8f02179[m Remove footer
+[33m47ff89b[m Only show edit and delete to author
+[33mae83828[m Add Edit methods and empty view
+[33m584305d[m Make delete button work
+[33m07293f1[m Add delete method to controller
+[33ma04fced[m Make create page work
+[33mc82f858[m Add inputs for create view
+[33m9627791[m Remove .vs folder from tracking
+[33m23df009[m Update gitignore
+[33m1078b73[m Add empty create view
+[33m97f160b[m Update gitignore
+[33m1ead612[m Add custom user field to registration page
+[33ma57e4e4[m Add register and login to navbar
+[33m4fbe3eb[m Add database seed
+[33m4175bf0[m Add db initializer
+[33meeb15b8[m Switch SQL server to postgres
+[33m8ac4471[m Add extended IdentityUser and Article tables
+[33m635f31d[m BloggingApp initial commit
