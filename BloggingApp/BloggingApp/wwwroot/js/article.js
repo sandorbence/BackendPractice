@@ -13,6 +13,7 @@ function display(data) {
     for (let i = 0; i < placeHolders.length; i++) {
         let current = placeHolders[i];
         let href = current.querySelector("a").getAttribute("href");
+        href = href.slice(0, href.length - 1);
         href += top3[i].id;
 
         current.querySelector("a").setAttribute("href", href);
