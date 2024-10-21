@@ -12,9 +12,10 @@ function display(data) {
 
     for (let i = 0; i < placeHolders.length; i++) {
         let current = placeHolders[i];
+        let href = current.querySelector("a").getAttribute("href");
+        href += top3[i].id;
 
-        current.querySelector("a").setAttribute("asp-action", "Edit");
-        current.querySelector("a").setAttribute("asp-route-id", top3[i].id);
+        current.querySelector("a").setAttribute("href", href);
         current.querySelector("h6").innerText = top3[i].title;
         current.querySelector("small").innerText = new Date(top3[i].date).toLocaleString("en-US", options);
     }
