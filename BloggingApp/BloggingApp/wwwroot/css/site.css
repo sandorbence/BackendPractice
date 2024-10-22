@@ -18,12 +18,22 @@ html {
 }
 
 body {
+    background-color: #212529;
+    color: white;
     margin-bottom: 60px;
 }
 
 .form-control {
+    background-color: #343a40;
+    color: white;
     margin: 5px 0;
 }
+
+    .form-control:focus {
+        background-color: #55595c;
+        box-shadow: 0 0 0 0.1rem grey, 0 0 0 0.1rem white;
+        color: white;
+    }
 
 textarea {
     resize: none;
