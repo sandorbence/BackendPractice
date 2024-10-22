@@ -3,6 +3,7 @@
 @model Article
 
 <main class="container">
+    <input hidden id="articleId" value="@Model.Id" />
     <div class="row g-5">
         <div class="col-md-8">
             <article class="blog-post">
@@ -14,7 +15,7 @@
             @if (ViewBag.UserIsAuthor)
             {
                 <div class="d-flex">
-                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary" id="articleId">Edit</a>
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
                     <form method="post" asp-action="Delete" asp-route-id="@Model.Id">
                         <input type="submit" class="btn btn-danger" value="Delete" />
                     </form>

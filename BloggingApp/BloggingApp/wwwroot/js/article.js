@@ -8,6 +8,10 @@ function display(data) {
     let options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
 
     data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    let currentArticleId = document.getElementById("articleId").value;
+    data = data.filter(x => x.id != currentArticleId);
+
     let top3 = data.slice(0, 3);
 
     for (let i = 0; i < placeHolders.length; i++) {
