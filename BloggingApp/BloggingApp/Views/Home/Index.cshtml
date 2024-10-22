@@ -5,13 +5,17 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <ul>
+<h1 class="text-center">Sample Blogging Site</h1>
+<div class="align-content-lg-start">
+    <ul class="row list-unstyled">
         @foreach (Article article in Model)
         {
-            <li>
-                <a asp-controller="Home" asp-action="Article" asp-route-articleId="@article.Id">@article.Title</a>
+            <li class="col-md-4">
+                <a class="link-light text-decoration-none" asp-controller="Home" asp-action="Article" asp-route-articleId="@article.Id">
+                    <h3>@article.Title</h3>
+                </a>
                 <div>By:&nbsp;@article.ApplicationUser.Name</div>
+                <p>@(article.Text.Length > 150 ? $"{article.Text[..150]}..." : article.Text)</p>
             </li>
         }
     </ul>
