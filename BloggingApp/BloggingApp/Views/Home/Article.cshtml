@@ -15,9 +15,9 @@
             @if (ViewBag.UserIsAuthor)
             {
                 <div class="d-flex">
-                    <a asp-action="Upsert" asp-route-id="@Model.Id" class="btn btn-secondary">Edit</a>
+                    <a asp-action="Upsert" asp-route-id="@Model.Id" class="btn btn-secondary my-1">Edit</a>
                     <form method="post" asp-action="Delete" asp-route-id="@Model.Id">
-                        <input type="submit" class="btn btn-secondary" value="Delete" />
+                        <input type="submit" class="btn btn-secondary my-1 mx-2" value="Delete" />
                     </form>
                 </div>
             }
@@ -33,8 +33,8 @@
                             <li>
                                 <a asp-action="Article" asp-route-articleId="0" class="link-light d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top">
                                     <div class="col-lg-8">
-                                        <h6 class="mb-0">Example blog post title</h6>
-                                        <small class="text-body-secondary">January 15, 2024</small>
+                                        <h6 class="mb-0"></h6>
+                                        <small class="text-body-secondary"></small>
                                     </div>
                                 </a>
                             </li>
