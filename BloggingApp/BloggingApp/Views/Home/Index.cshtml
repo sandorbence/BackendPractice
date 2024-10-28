@@ -12,7 +12,7 @@
         {
             <li class="col-md-4">
                 <a class="link-light text-decoration-none" asp-controller="Home" asp-action="Article" asp-route-articleId="@article.Id">
-                    <h3>@article.Title</h3>
+                    <h3>@(article.Title.Length > 30 ? $"{article.Title[..30]}..." : article.Title)</h3>
                 </a>
                 <div>By:&nbsp;@article.ApplicationUser.Name</div>
                 <p>@(article.Text.Length > 150 ? $"{article.Text[..150]}..." : article.Text)</p>

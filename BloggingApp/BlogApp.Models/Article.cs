@@ -9,10 +9,10 @@ namespace BlogApp.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [MaxLength(30)]
+        [MaxLength(100)]
         public string Title { get; set; }
         [Required]
-        [MaxLength(2000)]
+        [MaxLength(5000)]
         public string Text { get; set; }
         public DateTime Date { get; set; }
         [Required]

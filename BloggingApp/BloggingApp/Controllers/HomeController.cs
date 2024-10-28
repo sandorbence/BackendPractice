@@ -7,7 +7,6 @@ using BlogApp.DataAccess.Repository.Interfaces;
 using BloggingApp.Models;
 using BlogApp.Models;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Identity;
 
 namespace BloggingApp.Controllers
 {
@@ -42,24 +41,41 @@ namespace BloggingApp.Controllers
         }
 
         [Authorize]
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {
             string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             this.ViewBag.UserId = userId;
 
-            return View();
+            if (id == null || id == 0)
+            {
+                return View(new Article());
+            }
+
+            Article article = this._unitOfWork.Article.Get(a => a.Id == id);
+
+            return View(article);
         }
 
         [HttpPost]
-        public IActionResult Create(Article article)
+        public IActionResult Upsert(Article article)
         {
             if (ModelState.IsValid)
             {
                 DateTime date = DateTime.Now;
                 DateTime.SpecifyKind(date, DateTimeKind.Utc);
                 article.Date = date;
-                this._unitOfWork.Article.Add(article);
+
+                if (article.Id == 0)
+                {
+                    this._unitOfWork.Article.Add(article);
+                }
+                else
+                {
+                    this._unitOfWork.Article.Update(article);
+                }
+
                 this._unitOfWork.Save();
+
                 return RedirectToAction("Index");
             }
 
