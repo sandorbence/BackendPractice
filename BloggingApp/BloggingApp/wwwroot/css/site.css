@@ -33,6 +33,10 @@ body {
     margin: 5px 0;
 }
 
+    .form-control:disabled {
+        background-color: grey;
+    }
+
     .form-control:focus {
         background-color: #55595c;
         box-shadow: 0 0 0 0.1rem grey, 0 0 0 0.1rem white;

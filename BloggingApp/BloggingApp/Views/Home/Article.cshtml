@@ -9,7 +9,8 @@
         <div class="col-md-8">
             <article class="blog-post">
                 <h2 class="display-5 link-body-emphasis mb-1">@Model.Title</h2>
-                <p class="blog-post-meta">@Model.Date.ToString("MMMM dd, yyyy hh:mm tt", new CultureInfo("en-US")) by <a class="link-light" href="#">@Model.ApplicationUser.Name</a></p>
+                <p class="blog-post-meta">@Model.Date.ToString("MMMM dd, yyyy hh:mm tt", new CultureInfo("en-US")) by 
+                    <a class="link-light" asp-area="Identity" asp-page="/Account/Manage/Index">@Model.ApplicationUser.Name</a></p>
 
                 <div>@Html.Raw(Markdown.ToHtml(Model.Text))</div>
             </article>

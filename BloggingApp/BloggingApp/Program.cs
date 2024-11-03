@@ -7,6 +7,7 @@ using BlogApp.DataAccess.Repository;
 using BlogApp.DataAccess.Repository.Interfaces;
 using BlogApp.DataAccess.DbInitializer;
 using BloggingApp.Utils;
+using BlogApp.Models;
 
 public class Program
 {
