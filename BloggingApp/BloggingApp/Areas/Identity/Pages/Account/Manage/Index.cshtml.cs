@@ -64,6 +64,7 @@ namespace BloggingApp.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Username")]
             public string Name { get; set; }
             public string Email { get; set; }
+            public IEnumerable<Article> Articles { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -73,11 +74,14 @@ namespace BloggingApp.Areas.Identity.Pages.Account.Manage
 
             Username = userName;
 
+            List<Article> articles = _unitOfWork.Article.GetAll(x => x.ApplicationUser == user).ToList();
+
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
                 Name = user.Name,
-                Email = user.Email
+                Email = user.Email,
+                Articles = articles
             };
         }
 

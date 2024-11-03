@@ -4,6 +4,7 @@
     ViewData["Title"] = "Profile";
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
+@using BlogApp.Models
 
 <h3>@ViewData["Title"]</h3>
 <partial name="_StatusMessage" for="StatusMessage" />
@@ -21,7 +22,7 @@
                 <span asp-validation-for="Input.Name" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number."/>
+                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number." />
                 <label asp-for="Input.PhoneNumber" class="form-label"></label>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
@@ -29,6 +30,18 @@
         </form>
     </div>
 </div>
+
+<h3 class="mt-3">Your Articles</h3>
+<ul class="list-unstyled">
+    @foreach (Article article in @Model.Input.Articles)
+    {
+        <li>
+            <a class="link-light text-decoration-none" asp-controller="Home" asp-action="Article" asp-route-articleId="@article.Id">
+                <h5>@article.Title</h5>
+            </a>
+        </li>
+    }
+</ul>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
