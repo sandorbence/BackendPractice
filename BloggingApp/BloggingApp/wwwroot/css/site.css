@@ -46,3 +46,9 @@ h1 {
 h2 {
     margin-bottom: 30px;
 }
+
+pre {
+    background-color: grey;
+    border-radius: 5px;
+    padding: 10px;
+}
