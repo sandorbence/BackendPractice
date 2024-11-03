@@ -68,10 +68,12 @@ namespace BloggingApp.Controllers
                 if (article.Id == 0)
                 {
                     this._unitOfWork.Article.Add(article);
+                    this.TempData["success"] = "Article created successfully!";
                 }
                 else
                 {
                     this._unitOfWork.Article.Update(article);
+                    this.TempData["success"] = "Article updated successfully!";
                 }
 
                 this._unitOfWork.Save();
@@ -96,38 +98,8 @@ namespace BloggingApp.Controllers
             this._unitOfWork.Article.Remove(article);
             this._unitOfWork.Save();
 
+            this.TempData["success"] = "Article deleted successfully!";
             return RedirectToAction("Index");
-        }
-
-        [Authorize]
-        public IActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-
-            Article? article = this._unitOfWork.Article.Get(a => a.Id == id);
-
-            if (article == null)
-            {
-                return NotFound();
-            }
-
-            return View(article);
-        }
-
-        [HttpPost]
-        public IActionResult Edit(Article article)
-        {
-            if (ModelState.IsValid)
-            {
-                this._unitOfWork.Article.Update(article);
-                this._unitOfWork.Save();
-                return RedirectToAction("Index");
-            }
-
-            return View(article);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
