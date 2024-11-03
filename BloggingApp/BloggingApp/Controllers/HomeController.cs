@@ -7,6 +7,8 @@ using BlogApp.DataAccess.Repository.Interfaces;
 using BloggingApp.Models;
 using System.Security.Claims;
 using BlogApp.Models.Models;
+using BlogApp.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace BloggingApp.Controllers
 {
@@ -14,11 +16,13 @@ namespace BloggingApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, UserManager<IdentityUser> userManager)
         {
             this._logger = logger;
             this._unitOfWork = unitOfWork;
+            this._userManager = userManager;
         }
 
         public IActionResult Index()
@@ -33,9 +37,10 @@ namespace BloggingApp.Controllers
         {
             Article article = this._unitOfWork.Article.Get(a => a.Id == articleId, includeProperties: "ApplicationUser");
 
-            string? currentUserName = this.User?.Identity?.Name;
+            string? userId = this._userManager.GetUserId(User);
 
-            this.ViewBag.UserIsAuthor = currentUserName == article.ApplicationUser.UserName;
+            this.ViewBag.UserId = article.ApplicationUserId;
+            this.ViewBag.UserIsAuthor = userId == article.ApplicationUserId;
 
             return View(article);
         }
@@ -57,6 +62,7 @@ namespace BloggingApp.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Upsert(Article article)
         {
             if (ModelState.IsValid)
@@ -100,6 +106,15 @@ namespace BloggingApp.Controllers
 
             this.TempData["success"] = "Article deleted successfully!";
             return RedirectToAction("Index");
+        }
+
+        public IActionResult ApplicationUser(string id)
+        {
+            ApplicationUserViewModel userVm = new ApplicationUserViewModel();
+            userVm.ApplicationUser = this._unitOfWork.ApplicationUser.Get(x => x.Id == id);
+            userVm.Articles = this._unitOfWork.Article.GetAll(x => x.ApplicationUser == userVm.ApplicationUser);
+
+            return View(userVm);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
