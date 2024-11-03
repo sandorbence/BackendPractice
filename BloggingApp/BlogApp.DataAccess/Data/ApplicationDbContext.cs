@@ -37,7 +37,7 @@ namespace BlogApp.DataAccess.Data
                     Email = "sample@user.com",
                     NormalizedEmail = "SAMPLE@USER.COM",
                     EmailConfirmed = false,
-                    PasswordHash = "hashedpassword",
+                    PasswordHash = "AQAAAAIAAYagAAAAEAAgOJfc0/GtJqqlhn3go5EwvL0ECMzcruLrHj1tOkgDujT9QY53SZUnm7/bIlZRHw==",
                     SecurityStamp = Guid.NewGuid().ToString(),
                     ConcurrencyStamp = Guid.NewGuid().ToString(),
                     PhoneNumber = "123456",
