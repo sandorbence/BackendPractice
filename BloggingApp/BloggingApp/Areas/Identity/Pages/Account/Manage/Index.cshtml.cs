@@ -4,8 +4,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using BlogApp.DataAccess.Repository.Interfaces;
-using BlogApp.Models;
-
+using BlogApp.Models.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

@@ -1,10 +1,10 @@
 ﻿using BlogApp.DataAccess.Data;
 using BlogApp.DataAccess.Repository.Interfaces;
-using BlogApp.Models;
+using BlogApp.Models.Models;
 
 namespace BlogApp.DataAccess.Repository
 {
-	internal class ArticleRepository : Repository<Article>, IArticleRepository
+    internal class ArticleRepository : Repository<Article>, IArticleRepository
 	{
 		private readonly ApplicationDbContext _db;
 

@@ -1,6 +1,6 @@
 ﻿using BlogApp.DataAccess.Data;
 using BlogApp.DataAccess.Repository.Interfaces;
-using BlogApp.Models;
+using BlogApp.Models.Models;
 
 namespace BlogApp.DataAccess.Repository
 {

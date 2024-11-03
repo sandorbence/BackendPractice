@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 
 using BlogApp.DataAccess.Repository.Interfaces;
 using BloggingApp.Models;
-using BlogApp.Models;
 using System.Security.Claims;
+using BlogApp.Models.Models;
 
 namespace BloggingApp.Controllers
 {

@@ -1,4 +1,4 @@
-﻿using BlogApp.Models;
+﻿using BlogApp.Models.Models;
 
 namespace BlogApp.DataAccess.Repository.Interfaces
 {
