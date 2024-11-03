@@ -76,7 +76,7 @@ namespace BloggingApp.Controllers
 
                 this._unitOfWork.Save();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Article", new { articleId = article.Id });
             }
 
             return View(article);

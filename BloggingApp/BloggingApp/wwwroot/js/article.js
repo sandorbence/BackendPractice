@@ -25,3 +25,7 @@ function display(data) {
         current.querySelector("small").innerText = new Date(top3[i].date).toLocaleString("en-US", options);
     }
 }
+
+$('#deleteModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+})
