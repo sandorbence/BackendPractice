@@ -35,7 +35,7 @@
 <ul class="list-unstyled">
     @foreach (Article article in @Model.Input.Articles)
     {
-        <li>
+        <li class="my-3">
             <a class="link-light text-decoration-none" asp-controller="Home" asp-action="Article" asp-route-articleId="@article.Id">
                 <h5>@article.Title</h5>
             </a>

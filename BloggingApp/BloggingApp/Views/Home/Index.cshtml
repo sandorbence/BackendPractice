@@ -1,4 +1,5 @@
 ﻿@using BlogApp.Models.Models;
+@using Markdig
 @model IEnumerable<Article>
 
 @{
@@ -15,7 +16,7 @@
                     <h3>@(article.Title.Length > 30 ? $"{article.Title[..30]}..." : article.Title)</h3>
                 </a>
                 <div>By:&nbsp;@article.ApplicationUser.Name</div>
-                <p>@(article.Text.Length > 150 ? $"{article.Text[..150]}..." : article.Text)</p>
+                <p>@(article.Text.Length > 150 ? $"{article.Text[..150].Replace("#", "")}..." : article.Text.Replace("#", ""))</p>
             </li>
         }
     </ul>
