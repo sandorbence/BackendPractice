@@ -17,14 +17,14 @@ namespace WeatherApp.Controllers
 
         public IActionResult Index()
         {
-            var asd = ApiService.ApiService.GetApiData();
-
             return View();
         }
 
         public IActionResult City(string cityName)
         {
-            return View();
+            Forecast forecast = ApiService.ApiService.GetApiData(cityName).GetAwaiter().GetResult();
+
+            return View(forecast);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

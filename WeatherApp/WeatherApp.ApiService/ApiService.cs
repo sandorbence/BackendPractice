@@ -10,15 +10,16 @@ namespace WeatherApp.ApiService
 
         private static HttpClient _httpClient = new HttpClient();
 
-        public static void BuildQuery()
+        private static string BuildQuery(string city)
         {
-
+            return $"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{city}?unitGroup=us&key={apiKey}";
         }
 
-        public async static Task<Forecast> GetApiData()
+        public async static Task<Forecast> GetApiData(string city)
         {
-            HttpResponseMessage result = await _httpClient
-                .GetAsync($"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/London%2CUK?unitGroup=us&key={apiKey}");
+            string query = BuildQuery(city);
+
+            HttpResponseMessage result = await _httpClient.GetAsync(query);
 
             result.EnsureSuccessStatusCode();
 
