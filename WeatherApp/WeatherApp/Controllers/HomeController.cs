@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+
 using WeatherApp.Models;
+using WeatherApp.ApiService;
 
 namespace WeatherApp.Controllers
 {
@@ -15,10 +17,12 @@ namespace WeatherApp.Controllers
 
         public IActionResult Index()
         {
+            var asd = ApiService.ApiService.GetApiData();
+
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult City(string cityName)
         {
             return View();
         }
