@@ -8,11 +8,13 @@ namespace WeatherApp.ApiService
         private static string apiKey = Environment.GetEnvironmentVariable("WEATHER_API_KEY", EnvironmentVariableTarget.User)
             ?? throw new Exception("API key not found.");
 
+        private const string baseAddress = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
+
         private static HttpClient _httpClient = new HttpClient();
 
         private static string BuildQuery(string city)
         {
-            return $"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{city}?unitGroup=us&key={apiKey}";
+            return $"{baseAddress}{city}?unitGroup=metric&key={apiKey}";
         }
 
         public async static Task<Forecast> GetApiData(string city)

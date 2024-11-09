@@ -1,8 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System.Linq;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 using WeatherApp.Models;
-using WeatherApp.ApiService;
 
 namespace WeatherApp.Controllers
 {
@@ -17,7 +20,20 @@ namespace WeatherApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<string> defaultCities = new List<string>
+            {
+                "Budapest",
+                "London",
+                "New York",
+                "Sydney",
+                "Buenos Aires"
+            };
+
+            List<Forecast> defaultCitiesForecast = defaultCities
+                .Select(city => ApiService.ApiService.GetApiData(city).GetAwaiter().GetResult())
+                .ToList();
+
+            return View(defaultCitiesForecast);
         }
 
         public IActionResult City(string cityName)

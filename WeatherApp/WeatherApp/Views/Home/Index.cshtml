@@ -1,3 +1,14 @@
-﻿<form method="get" asp-action="City">
+﻿@model List<Forecast>
+
+<ul class="list-unstyled">
+    @foreach(Forecast f in Model)
+    {
+        <li class="text-decoration-none">
+            <a asp-action="City" asp-route-cityName="@f.Address">@f.Address</a>
+        </li>
+    }
+</ul>
+
+<form method="get" asp-action="City">
     <input type="text" name="cityName" />
 </form>
