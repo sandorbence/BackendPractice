@@ -1,4 +1,8 @@
 ﻿using System.Text.Json;
+
+using Microsoft.Extensions.Caching.Distributed;
+
+using WeatherApp.ApiService.Caching;
 using WeatherApp.Models;
 
 namespace WeatherApp.ApiService
@@ -11,13 +15,30 @@ namespace WeatherApp.ApiService
         private const string baseAddress = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
 
         private static HttpClient _httpClient = new HttpClient();
+        private static IDistributedCache _cache;
 
-        private static string BuildQuery(string city)
+        public static void AddDistributedCache(IDistributedCache cache)
         {
-            return $"{baseAddress}{city}?unitGroup=metric&key={apiKey}";
+            _cache = cache;
         }
 
-        public async static Task<Forecast> GetApiData(string city)
+        public static async Task<Forecast> GetForecast(string city)
+        {
+            string timeStamp = DateTime.Now.ToString("yyyyMMdd_hhmm");
+            string recordKey = $"WeatherApp_{city}_{timeStamp}";
+
+            Forecast forecast = await _cache.GetRecordAsync<Forecast>(recordKey);
+
+            if (forecast is null)
+            {
+                forecast = await GetApiData(city);
+                await _cache.SetRecordAsync<Forecast>(recordKey, forecast);
+            }
+
+            return forecast;
+        }
+
+        private async static Task<Forecast> GetApiData(string city)
         {
             string query = BuildQuery(city);
 
@@ -27,6 +48,11 @@ namespace WeatherApp.ApiService
 
             string content = await result.Content.ReadAsStringAsync();
             return ParseData(content);
+        }
+
+        private static string BuildQuery(string city)
+        {
+            return $"{baseAddress}{city}?unitGroup=metric&key={apiKey}";
         }
 
         private static Forecast ParseData(string data)

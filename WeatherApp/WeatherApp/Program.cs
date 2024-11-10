@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -21,6 +22,8 @@ namespace WeatherApp
             });
 
             var app = builder.Build();
+
+            ApiService.ApiService.AddDistributedCache((IDistributedCache)app.Services.GetService(typeof(IDistributedCache)));
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

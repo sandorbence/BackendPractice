@@ -30,7 +30,7 @@ namespace WeatherApp.Controllers
             };
 
             List<Forecast> defaultCitiesForecast = defaultCities
-                .Select(city => ApiService.ApiService.GetApiData(city).GetAwaiter().GetResult())
+                .Select(city => ApiService.ApiService.GetForecast(city).GetAwaiter().GetResult())
                 .ToList();
 
             return View(defaultCitiesForecast);
@@ -38,7 +38,7 @@ namespace WeatherApp.Controllers
 
         public IActionResult City(string cityName)
         {
-            Forecast forecast = ApiService.ApiService.GetApiData(cityName).GetAwaiter().GetResult();
+            Forecast forecast = ApiService.ApiService.GetForecast(cityName).GetAwaiter().GetResult();
 
             return View(forecast);
         }
