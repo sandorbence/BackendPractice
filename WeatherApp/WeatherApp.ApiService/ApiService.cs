@@ -25,7 +25,7 @@ namespace WeatherApp.ApiService
         public static async Task<Forecast> GetForecast(string city)
         {
             string timeStamp = DateTime.Now.ToString("yyyyMMdd_hhmm");
-            string recordKey = $"WeatherApp_{city}_{timeStamp}";
+            string recordKey = $"{city}_{timeStamp}";
 
             Forecast forecast = await _cache.GetRecordAsync<Forecast>(recordKey);
 
