@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 
 using Microsoft.Extensions.Caching.Distributed;
-
+using Microsoft.Extensions.Logging;
 using WeatherApp.ApiService.Caching;
 using WeatherApp.Models;
 
@@ -16,10 +16,12 @@ namespace WeatherApp.ApiService
 
         private static HttpClient _httpClient = new HttpClient();
         private static IDistributedCache _cache;
+        private static ILogger _logger;
 
-        public static void AddDistributedCache(IDistributedCache cache)
+        public static void Init(IDistributedCache cache, ILogger logger)
         {
             _cache = cache;
+            _logger = logger;
         }
 
         public static async Task<Forecast> GetForecast(string city)
@@ -31,8 +33,13 @@ namespace WeatherApp.ApiService
 
             if (forecast is null)
             {
+                _logger.LogInformation("Getting data from API");
                 forecast = await GetApiData(city);
                 await _cache.SetRecordAsync<Forecast>(recordKey, forecast);
+            }
+            else
+            {
+                _logger.LogInformation("Getting data from cache");
             }
 
             return forecast;

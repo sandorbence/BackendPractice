@@ -3,6 +3,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace WeatherApp
 {
@@ -23,7 +24,9 @@ namespace WeatherApp
 
             var app = builder.Build();
 
-            ApiService.ApiService.AddDistributedCache((IDistributedCache)app.Services.GetService(typeof(IDistributedCache)));
+            ILogger logger = LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger("ApiService");
+
+            ApiService.ApiService.Init((IDistributedCache)app.Services.GetService(typeof(IDistributedCache)), logger);
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
