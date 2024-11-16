@@ -80,7 +80,8 @@ namespace WeatherApp.ApiService
                     TempMax = dayData.GetProperty("tempmax").GetSingle(),
                     FeelsLike = dayData.GetProperty("feelslike").GetSingle(),
                     Humidity = dayData.GetProperty("humidity").GetSingle(),
-                    Description = dayData.GetProperty("description").GetString()
+                    Description = dayData.GetProperty("description").GetString(),
+                    Icon = dayData.GetProperty("icon").GetString()
                 };
 
                 days.Add(day);
