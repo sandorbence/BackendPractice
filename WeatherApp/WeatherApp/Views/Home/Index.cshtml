@@ -1,13 +1,20 @@
-﻿@model List<Forecast>
+﻿@using Microsoft.AspNetCore.Mvc.ModelBinding
+@model List<Forecast>
 
-<ul class="list-unstyled">
-    @foreach(Forecast f in Model)
+<div class="row row-cols-3 g-3">
+    @foreach (Forecast f in Model)
     {
-        <li class="text-decoration-none">
-            <a asp-action="City" asp-route-cityName="@f.Address">@f.Address</a>
-        </li>
+        ViewDataDictionary viewData = new ViewDataDictionary(
+        new EmptyModelMetadataProvider(),
+        new ModelStateDictionary()) { { "Address", f.Address } };
+
+        <a asp-action="City" asp-route-cityName="@f.Address" class="text-decoration-none">
+            <div class="col">
+                @Html.Partial("~/Views/Shared/_Day.cshtml", f.Days[0], viewData)
+            </div>
+        </a>
     }
-</ul>
+</div>
 
 <form method="get" asp-action="City">
     <input type="text" name="cityName" />
