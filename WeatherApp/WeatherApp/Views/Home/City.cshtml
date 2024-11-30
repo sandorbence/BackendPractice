@@ -1,48 +1,13 @@
-﻿@model Forecast
+﻿@using Microsoft.AspNetCore.Mvc.ModelBinding
+@model Forecast
 
 @{
-    Day today = Model.Days[0];
-
-    string imgSource = $"/images/{today.Icon}.svg";
+    ViewDataDictionary viewData = new ViewDataDictionary(
+        new EmptyModelMetadataProvider(),
+        new ModelStateDictionary()) { { "Address", Model.Address } };
 }
 
-<div class="row d-flex justify-content-center py-5">
-    <div class="col-md-8 col-lg-6 col-xl-5">
-
-        <div class="card text-body" style=" border-radius: 35px;">
-            <div class="card-body p-4">
-
-                <div class="d-flex">
-                    <h6 class="flex-grow-1">@Model.Address</h6>
-                    <h6>@DateTime.Now.ToString("t")</h6>
-                </div>
-
-                <div class="d-flex flex-column text-center mt-5 mb-4">
-                    <h6 class="display-4 mb-0 font-weight-bold"> @today.Temp°C </h6>
-                    <span class="small" style="color: #868B94">@today.Description</span>
-                </div>
-
-                <div class="d-flex align-items-center">
-                    <div class="flex-grow-1" style="font-size: 1rem;">
-                        <div>
-                            <img src="/images/windspeed.png" width="10px"> <span class="ms-1">
-                                @today.WindSpeed km/h
-                            </span>
-                        </div>
-                        <div>
-                            <img src="/images/humidity.png" width="10px"> <span class="ms-1">
-                                @today.Humidity%
-                            </span>
-                        </div>
-                    </div>
-                    <div>
-                        <img src="@imgSource"
-                             width="100px">
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-</div>
+@foreach(Day day in Model.Days)
+{
+    @Html.Partial("~/Views/Shared/_Day.cshtml", day, viewData)
+}
