@@ -81,7 +81,8 @@ namespace WeatherApp.ApiService
                     FeelsLike = dayData.GetProperty("feelslike").GetSingle(),
                     Humidity = dayData.GetProperty("humidity").GetSingle(),
                     Description = dayData.GetProperty("description").GetString(),
-                    Icon = dayData.GetProperty("icon").GetString()
+                    Icon = dayData.GetProperty("icon").GetString(),
+                    WindSpeed = dayData.GetProperty("windspeed").GetSingle()
                 };
 
                 days.Add(day);
