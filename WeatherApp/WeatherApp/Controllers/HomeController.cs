@@ -26,7 +26,8 @@ namespace WeatherApp.Controllers
                 "London",
                 "New York",
                 "Sydney",
-                "Buenos Aires"
+                "Buenos Aires",
+                "Tokyo"
             };
 
             List<Forecast> defaultCitiesForecast = defaultCities
