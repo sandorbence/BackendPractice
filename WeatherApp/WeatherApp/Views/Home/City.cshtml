@@ -7,7 +7,11 @@
         new ModelStateDictionary()) { { "Address", Model.Address } };
 }
 
-@foreach(Day day in Model.Days)
-{
-    @Html.Partial("~/Views/Shared/_Day.cshtml", day, viewData)
-}
+<div class="row row-cols-5 g-3">
+    @foreach (Day day in Model.Days)
+    {
+        <div class="col">
+            @Html.Partial("~/Views/Shared/_Day.cshtml", day, viewData)
+        </div>
+    }  
+</div>
