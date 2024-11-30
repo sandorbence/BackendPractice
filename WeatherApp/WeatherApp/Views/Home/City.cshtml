@@ -3,4 +3,8 @@
 <div>
     <div>@Model.Address</div>
     <div>@Model.Days[0].Temp</div>
+    @{
+        string imgSource = $"/images/{Model.Days[0].Icon}.svg";
+    }
+    <img src="@imgSource" />
 </div>
